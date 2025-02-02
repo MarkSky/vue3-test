@@ -2,6 +2,7 @@
 import eslint from "@eslint/js";
 import globals from "globals";
 import stylistic from "@stylistic/eslint-plugin";
+import htmlEsLint from "@html-eslint/eslint-plugin";
 import html from "eslint-plugin-html";
 import tseslint from "typescript-eslint";
 import tsParser from "@typescript-eslint/parser";
@@ -64,10 +65,14 @@ export default [
         },
     },
     {
+        ...htmlEsLint.configs["flat/recommended"],
         name: "app/html-files-to-lint",
         files: ["**/*.html"],
         plugins: {
             html
+        },
+        rules: {
+            ...htmlEsLint.configs["flat/recommended"].rules,
         }
     },
     {
