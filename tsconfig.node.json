@@ -7,7 +7,7 @@
         "nightwatch.conf.*",
         "playwright.config.*",
         "eslint.config.*",
-        "master.css.ts"
+        "master.css.ts",
     ],
     "compilerOptions": {
         "noEmit": true,
