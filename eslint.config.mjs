@@ -26,11 +26,13 @@ export default [
     },
     css,
     eslint.configs.recommended,
+    stylistic.configs.customize({
+        flat: true,
+        indent: 4,
+        semi: 'always',
+    }),
     {
         name: "app/all-files-to-lint",
-        plugins: {
-            "@stylistic": stylistic
-        },
         rules: {
             // eslint:recommended
             // "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -40,6 +42,8 @@ export default [
             "@master/css/class-order": "warn",
             "@master/css/class-validation": "error",
             "@master/css/class-collision": "warn",
+            '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+            "@stylistic/no-multi-spaces": ["error", { exceptions: { "ignoreEOLComments": true, "ImportDeclaration": true, "Property": true, "PropType": true, "VariableDeclarator": true, "TSTypeAnnotation": true } }],
         },
         languageOptions: {
             globals: {
@@ -119,7 +123,6 @@ export default [
                 "multilineDetection": "brackets"
             }],
             "@stylistic/multiline-ternary": ["error", "always-multiline"],
-            // "@stylistic/no-multi-spaces": ["error", { exceptions: { "ImportDeclaration": true, "Property": true, "PropType": true, "VariableDeclarator": true, "TSTypeAnnotation": true } }],
             "@stylistic/object-curly-spacing": ["error", "always"],
             "@stylistic/quotes": ["error", "single"],
             "@stylistic/semi": ["error", "always"],
@@ -176,7 +179,6 @@ export default [
                 "multilineDetection": "brackets"
             }],
             "@stylistic/multiline-ternary": ["error", "always-multiline"],
-            // "@stylistic/no-multi-spaces": ["error", { exceptions: { "ImportDeclaration": true, "Property": true } }],
             "@stylistic/object-curly-spacing": ["error", "always"],
             "@stylistic/quotes": ["error", "single"],
             "@stylistic/semi": ["error", "always"],
@@ -230,7 +232,6 @@ export default [
                 "multilineDetection": "brackets"
             }],
             "@stylistic/multiline-ternary": ["error", "always-multiline"],
-            // "@stylistic/no-multi-spaces": ["error", { exceptions: { "ImportDeclaration": true, "Property": true, "PropType": true, "VariableDeclarator": true, "TSTypeAnnotation": true } }],
             "@stylistic/object-curly-spacing": ["error", "always"],
             "@stylistic/quotes": ["error", "single"],
             "@stylistic/semi": ["error", "always"],
@@ -285,7 +286,6 @@ export default [
                 "@stylistic/key-spacing": ["error", { "beforeColon": false, "afterColon": true, "align": "colon" }],
                 "@stylistic/keyword-spacing": ["error", { "before": true, "after": true }],
                 "@stylistic/multiline-ternary": ["error", "always-multiline"],
-                "@stylistic/no-multi-spaces": ["error", { exceptions: { "ImportDeclaration": true, "Property": true, "TSTypeAnnotation": true } }],
                 "@stylistic/object-curly-spacing": ["error", "always"],
                 "@stylistic/quotes": ["error", "single"],
                 "@stylistic/semi": ["error", "always"],
@@ -329,7 +329,6 @@ export default [
                 "@stylistic/key-spacing": ["error", { "beforeColon": false, "afterColon": true, "align": "colon" }],
                 "@stylistic/keyword-spacing": ["error", { "before": true, "after": true }],
                 "@stylistic/multiline-ternary": ["error", "always-multiline"],
-                // "@stylistic/no-multi-spaces": ["error", { exceptions: { "ImportDeclaration": true, "Property": true, "TSTypeAnnotation": true } }],
                 "@stylistic/object-curly-spacing": ["error", "always"],
                 "@stylistic/quotes": ["error", "single"],
                 "@stylistic/semi": ["error", "always"],
