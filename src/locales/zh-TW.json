@@ -1,1 +1,25 @@
-{}
+{
+    "page": {
+        "home": {
+            "title": "首頁"
+        },
+        "about": {
+            "title": "關於我們"
+        },
+        "suspense": {
+            "title": "Suspense 測試"
+        },
+        "suspenseAsyncData": {
+            "title": "Suspense 異步載入資料 測試"
+        },
+        "suspenseAsyncComponent": {
+            "title": "Suspense 異步載入元件 測試"
+        }
+    },
+    "common": {
+        "column": {
+            "loading": "載入中...",
+            "noData": "沒有資料"
+        }
+    }
+}

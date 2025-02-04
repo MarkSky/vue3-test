@@ -1,0 +1,25 @@
+{
+    "page": {
+        "home": {
+            "title": "Home"
+        },
+        "about": {
+            "title": "About"
+        },
+        "suspense": {
+            "title": "Suspense test"
+        },
+        "suspenseAsyncData": {
+            "title": "SUSPENSE asynchronous load in data test"
+        },
+        "suspenseAsyncComponent": {
+            "title": "SUSPENSE asynchronous load component test"
+        }
+    },
+    "common": {
+        "column": {
+            "loading": "Loading...",
+            "noData": "No information"
+        }
+    }
+}
