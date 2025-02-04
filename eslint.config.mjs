@@ -4,7 +4,7 @@ import globals from 'globals';
 import stylistic from '@stylistic/eslint-plugin';
 import htmlEsLint from '@html-eslint/eslint-plugin';
 import html from 'eslint-plugin-html';
-import tseslint from 'typescript-eslint';
+import tsEslint from 'typescript-eslint';
 import tsParser from '@typescript-eslint/parser';
 import css from '@master/eslint-config-css';
 import pluginVue from 'eslint-plugin-vue';
@@ -132,7 +132,7 @@ export default [
             '@stylistic/template-tag-spacing': ['error', 'always'],
         },
     },
-    ...tseslint.configs.recommendedTypeChecked.map(config => ({
+    ...tsEslint.configs.recommendedTypeChecked.map(config => ({
         ...config,
         name: 'app/ts-files-to-lint',
         files: ['**/*.ts'],
@@ -170,8 +170,8 @@ export default [
             },
         },
     })),
-    ...tseslint.configs.strict,
-    ...tseslint.configs.stylistic,
+    ...tsEslint.configs.strict,
+    ...tsEslint.configs.stylistic,
     {
         name: 'app/model-files-to-lint',
         files: ['src/models/**/*.ts'],
