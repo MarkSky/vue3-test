@@ -187,6 +187,7 @@ export default [
             '@stylistic/key-spacing': ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
             '@stylistic/keyword-spacing': ['error', { before: true, after: true }],
             '@stylistic/multiline-ternary': ['error', 'always-multiline'],
+            '@stylistic/no-multi-spaces': 'off',
             '@stylistic/object-curly-spacing': ['error', 'always'],
             '@stylistic/quotes': ['error', 'single'],
             '@stylistic/space-before-blocks': 'error',
@@ -194,6 +195,7 @@ export default [
             '@stylistic/space-unary-ops': 'error',
             '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
             '@stylistic/template-curly-spacing': ['error', 'always'],
+            '@stylistic/type-annotation-spacing': 'off',
             '@stylistic/type-generic-spacing': 'error',
         },
         languageOptions: {
