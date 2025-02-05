@@ -216,7 +216,13 @@
         "string-no-newline": true,
         "time-min-milliseconds": 100,
         "unit-no-unknown": true,
-        "value-no-vendor-prefix": true
+        "value-no-vendor-prefix": true,
+        "@stylistic/indentation": [
+            4,
+            {
+                "baseIndentLevel": 1
+            }
+        ]
     },
     "overrides": [
         {
