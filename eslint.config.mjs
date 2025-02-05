@@ -53,8 +53,14 @@ export default [
             ],
             '@stylistic/member-delimiter-style': ['error', {
                 multiline: { delimiter: 'semi', requireLast: true },
-                singleline: { delimiter: 'semi', requireLast: true },
+                singleline: { delimiter: 'semi', requireLast: false },
                 multilineDetection: 'brackets',
+                overrides: {
+                    interface: {
+                        multiline: { delimiter: 'semi', requireLast: true },
+                        singleline: { delimiter: 'comma', requireLast: false },
+                    },
+                },
             }],
             '@stylistic/no-multi-spaces': ['error', { ignoreEOLComments: true, exceptions: { ImportDeclaration: true, Property: true, VariableDeclarator: true } }],
             '@stylistic/semi': ['error', 'always'],
