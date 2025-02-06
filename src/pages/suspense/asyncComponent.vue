@@ -25,6 +25,7 @@
 
 <template>
     <div>
+        <LoadingBox />
         <Suspense>
             <template #default>
                 <AsyncData />

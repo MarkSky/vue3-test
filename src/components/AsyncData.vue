@@ -27,7 +27,7 @@
 </script>
 
 <template>
-    <section class="flex ai:center flex:col">
+    <section class="flex ai:center fg:#ffffff flex:col">
         <template v-if="displayData && displayData.length > 0">
             <div v-for="(item, index) in displayData"
                  :key="index">

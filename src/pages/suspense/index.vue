@@ -35,3 +35,36 @@
         </RouterLink>
     </nav>
 </template>
+
+<style scoped>
+    nav {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 2rem;
+        width: 100%;
+    }
+
+    nav a.router-link-exact-active:hover {
+        background-color: transparent;
+    }
+
+    nav a {
+        border-left: 1px solid var(--color-border);
+        display: inline-block;
+        padding: 0 1rem;
+    }
+
+    nav a:first-of-type {
+        border: 0;
+    }
+
+    @media (width >=1024px) {
+        nav {
+            font-size: 1rem;
+            text-align: left;
+            margin-top: 1rem;
+            margin-left: -1rem;
+            padding: 1rem 0;
+        }
+    }
+</style>

@@ -25,7 +25,9 @@
 </script>
 
 <template>
-    <section>
-        {{ t('page.about.title') }}
+    <section class="flex ai:center f:20 f:bold fg:#ffffff jc:center mx:auto">
+        <h1>
+            {{ t('page.about.title') }}
+        </h1>
     </section>
 </template>

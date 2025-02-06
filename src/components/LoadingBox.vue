@@ -13,7 +13,7 @@
 </script>
 
 <template>
-    <div class="fg:#ffffff">
+    <div class="f:bold fg:#ffffff">
         {{ t('common.column.loading') }}
     </div>
 </template>
