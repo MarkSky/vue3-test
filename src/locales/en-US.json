@@ -20,6 +20,9 @@
         },
         "inSuspense": {
             "title": "Dynamic loading of components within Suspense Test"
+        },
+        "defaultDynamicComponent": {
+            "title": "Pure dynamic loading components test"
         }
     },
     "common": {
