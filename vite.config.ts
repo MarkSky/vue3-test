@@ -24,6 +24,9 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url)),
         },
     },
+    define: {
+        __API_URL__: JSON.stringify('https://localhost:55640'),
+    },
     server: {
         host: true,
     },
