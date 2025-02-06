@@ -17,6 +17,9 @@
         },
         "dynamicComponent": {
             "title": "Dynamic load component test"
+        },
+        "inSuspense": {
+            "title": "Dynamic loading of components within Suspense Test"
         }
     },
     "common": {

@@ -17,6 +17,9 @@
         },
         "dynamicComponent": {
             "title": "動態載入元件 測試"
+        },
+        "inSuspense": {
+            "title": "在Suspense內動態載入元件 測試"
         }
     },
     "common": {
