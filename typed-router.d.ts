@@ -21,6 +21,8 @@ declare module 'vue-router/auto-routes' {
     'Home': RouteRecordInfo<'Home', '/', Record<never, never>, Record<never, never>>,
     'About': RouteRecordInfo<'About', '/about', Record<never, never>, Record<never, never>>,
     'DynamicComponent': RouteRecordInfo<'DynamicComponent', '/dynamicComponent', Record<never, never>, Record<never, never>>,
+    'DefaultDynamicComponent': RouteRecordInfo<'DefaultDynamicComponent', '/dynamicComponent/defaultDynamicComponent', Record<never, never>, Record<never, never>>,
+    'InSuspense': RouteRecordInfo<'InSuspense', '/dynamicComponent/inSuspense', Record<never, never>, Record<never, never>>,
     'Suspense': RouteRecordInfo<'Suspense', '/suspense', Record<never, never>, Record<never, never>>,
     'SuspenseAsyncComponent': RouteRecordInfo<'SuspenseAsyncComponent', '/suspense/asyncComponent', Record<never, never>, Record<never, never>>,
     'SuspenseAsyncData': RouteRecordInfo<'SuspenseAsyncData', '/suspense/asyncData', Record<never, never>, Record<never, never>>,
