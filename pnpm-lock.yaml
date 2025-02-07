@@ -109,8 +109,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       eslint-plugin-oxlint:
-        specifier: ^0.15.9
-        version: 0.15.9
+        specifier: ^0.15.10
+        version: 0.15.10
       eslint-plugin-playwright:
         specifier: ^2.2.0
         version: 2.2.0(eslint@9.19.0(jiti@2.4.2))
@@ -1617,8 +1617,8 @@ packages:
     resolution: {integrity: sha512-pbRchDV2SmqbCi/Ev/q3aAikzG9BcFe0IjjqjtMn8eTLq71ZUggyJB6CDmuwGAXmYZHrXI12XTfCqvgcnPRqGw==}
     engines: {node: '>=16.0.0'}
 
-  eslint-plugin-oxlint@0.15.9:
-    resolution: {integrity: sha512-3XsiY+Uz8bbU+v3O9Kuf0a9qg2P3vIWydl1jiOVkwUECoa4MTtfR787uvFeRFJQVXiGuFXBU5mOpusXyiMFL5Q==}
+  eslint-plugin-oxlint@0.15.10:
+    resolution: {integrity: sha512-e8Q1xdvGhmy3jUpszrbLT2dX7X0xl2B2QmPSvkIlU+ozixXDw7EJCj8XsB/zO2wLLE1R73yF4wy5oqQXe5SLKA==}
 
   eslint-plugin-playwright@2.2.0:
     resolution: {integrity: sha512-qSQpAw7RcSzE3zPp8FMGkthaCWovHZ/BsXtpmnGax9vQLIovlh1bsZHEa2+j2lv9DWhnyeLM/qZmp7ffQZfQvg==}
@@ -4654,7 +4654,7 @@ snapshots:
     dependencies:
       htmlparser2: 9.1.0
 
-  eslint-plugin-oxlint@0.15.9:
+  eslint-plugin-oxlint@0.15.10:
     dependencies:
       jsonc-parser: 3.3.1
 
