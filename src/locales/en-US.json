@@ -23,6 +23,11 @@
         },
         "defaultDynamicComponent": {
             "title": "Pure dynamic loading components test"
+        },
+        "notFound": {
+            "column": {
+                "info": "Page not found!"
+            }
         }
     },
     "common": {

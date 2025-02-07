@@ -23,6 +23,11 @@
         },
         "defaultDynamicComponent": {
             "title": "純動態載入元件 測試"
+        },
+        "notFound": {
+            "column": {
+                "info": "找不到頁面！"
+            }
         }
     },
     "common": {
