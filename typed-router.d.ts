@@ -19,6 +19,7 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     'Home': RouteRecordInfo<'Home', '/', Record<never, never>, Record<never, never>>,
+    '404': RouteRecordInfo<'404', '/:path(.*)', { path: ParamValue<true> }, { path: ParamValue<false> }>,
     'About': RouteRecordInfo<'About', '/about', Record<never, never>, Record<never, never>>,
     'DynamicComponent': RouteRecordInfo<'DynamicComponent', '/dynamicComponent', Record<never, never>, Record<never, never>>,
     'DefaultDynamicComponent': RouteRecordInfo<'DefaultDynamicComponent', '/dynamicComponent/defaultDynamicComponent', Record<never, never>, Record<never, never>>,
