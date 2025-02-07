@@ -2,7 +2,8 @@
 import eslint from '@eslint/js';
 import globals from 'globals';
 import stylistic from '@stylistic/eslint-plugin';
-import htmlEsLint from '@html-eslint/eslint-plugin';
+import htmlEslint from '@html-eslint/eslint-plugin';
+import htmlParser from '@html-eslint/parser';
 import html from 'eslint-plugin-html';
 import tsEslint from 'typescript-eslint';
 import tsParser from '@typescript-eslint/parser';
@@ -64,6 +65,7 @@ export default [
             }],
             '@stylistic/no-multi-spaces': ['error', { ignoreEOLComments: true, exceptions: { ImportDeclaration: true, Property: true, VariableDeclarator: true } }],
             '@stylistic/semi': ['error', 'always'],
+            '@stylistic/template-curly-spacing': ['error', 'always'],
         },
         languageOptions: {
             globals: {
@@ -89,14 +91,24 @@ export default [
         },
     },
     {
-        ...htmlEsLint.configs['flat/recommended'],
+        ...htmlEslint.configs['flat/recommended'],
         name: 'app/html-files-to-lint',
         files: ['**/*.html'],
         plugins: {
+            '@html-eslint': htmlEslint,
             html,
         },
         rules: {
-            ...htmlEsLint.configs['flat/recommended'].rules,
+            ...htmlEslint.configs['flat/recommended'].rules,
+            '@html-eslint/indent': 'error',
+        },
+        languageOptions: {
+            parser: htmlParser,
+            parserOptions: {
+                templateEngineSyntax: { // here
+                    '{{': '}}',
+                },
+            },
         },
     },
     {
@@ -134,7 +146,6 @@ export default [
             '@stylistic/space-in-parens': ['error', 'never'],
             '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
             '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
-            '@stylistic/template-curly-spacing': ['error', 'always'],
             '@stylistic/template-tag-spacing': ['error', 'always'],
         },
     },
@@ -157,7 +168,6 @@ export default [
             '@stylistic/space-unary-ops': 'error',
             '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
             // "@stylistic/type-annotation-spacing": ["error", { "before": false, "after": true }],
-            '@stylistic/template-curly-spacing': ['error', 'always'],
             '@stylistic/type-generic-spacing': 'error',
             // turns a rule on with no configuration (i.e. uses the default configuration)
             '@typescript-eslint/array-type': ['error', { default: 'generic' }],
@@ -194,7 +204,6 @@ export default [
             '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
             '@stylistic/space-unary-ops': 'error',
             '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
-            '@stylistic/template-curly-spacing': ['error', 'always'],
             '@stylistic/type-annotation-spacing': 'off',
             '@stylistic/type-generic-spacing': 'error',
             '@typescript-eslint/array-type': ['error', { default: 'generic' }],
@@ -230,7 +239,6 @@ export default [
             '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
             '@stylistic/space-unary-ops': 'error',
             '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
-            '@stylistic/template-curly-spacing': ['error', 'always'],
             '@stylistic/type-annotation-spacing': 'off',
             '@stylistic/type-generic-spacing': 'error',
         },
@@ -272,7 +280,6 @@ export default [
                 '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
                 '@stylistic/space-unary-ops': 'error',
                 '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
-                '@stylistic/template-curly-spacing': ['error', 'always'],
                 '@stylistic/type-annotation-spacing': 'off',
                 '@stylistic/type-generic-spacing': 'error',
                 '@typescript-eslint/unbound-method': 'off',
@@ -316,7 +323,6 @@ export default [
                 '@stylistic/space-infix-ops': ['error', { int32Hint: false }],
                 '@stylistic/space-unary-ops': 'error',
                 '@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
-                '@stylistic/template-curly-spacing': ['error', 'always'],
                 '@stylistic/type-annotation-spacing': 'off',
                 '@typescript-eslint/unbound-method': 'off',
                 'vue/block-tag-newline': 'error',
