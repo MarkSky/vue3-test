@@ -29,7 +29,10 @@ export default [
     eslint.configs.recommended,
     stylistic.configs['recommended-flat'],
     {
-        name : 'app/all-files-to-lint',
+        name   : 'app/all-files-to-lint',
+        plugins: {
+            '@stylistic': stylistic,
+        },
         rules: {
             // eslint:recommended
             // "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -232,8 +235,11 @@ export default [
     ...tsEslint.configs.strict,
     ...tsEslint.configs.stylistic,
     {
-        name : 'app/model-files-to-lint',
-        files: ['src/models/**/*.ts'],
+        name   : 'app/model-files-to-lint',
+        files  : ['src/models/**/*.ts'],
+        plugins: {
+            '@stylistic': stylistic,
+        },
         rules: {
             '@stylistic/arrow-spacing'          : 'error',
             '@stylistic/comma-spacing'          : ['error', { before: false, after: true }],
@@ -267,6 +273,7 @@ export default [
             files  : ['src/directives/**/*.ts', 'src/stores/**/*.ts'],
             plugins: {
                 '@intlify/vue-i18n': vueI18n,
+                '@stylistic'       : stylistic,
             },
             settings: {
                 'vue-i18n': {
