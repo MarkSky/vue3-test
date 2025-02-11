@@ -236,7 +236,7 @@ export default [
     ...tsEslint.configs.stylistic,
     {
         name   : 'app/model-files-to-lint',
-        files  : ['src/models/**/*.ts'],
+        files  : ['src/models/*.ts', 'src/models/**/*.ts'],
         plugins: {
             '@stylistic': stylistic,
         },
@@ -270,7 +270,7 @@ export default [
         {
             ...config,
             name   : 'app/vue-script-files-to-lint',
-            files  : ['src/directives/**/*.ts', 'src/stores/**/*.ts'],
+            files  : ['src/directives/*.ts', 'src/directives/**/*.ts', 'src/stores/*.ts', 'src/stores/**/*.ts'],
             plugins: {
                 '@intlify/vue-i18n': vueI18n,
                 '@stylistic'       : stylistic,
@@ -312,7 +312,7 @@ export default [
         {
             ...config,
             name   : 'app/component-files-to-lint',
-            files  : ['**/*.vue'],
+            files  : ['*.vue', '**/*.vue'],
             plugins: {
                 '@intlify/vue-i18n': vueI18n,
             },
