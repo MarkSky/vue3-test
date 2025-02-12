@@ -239,7 +239,7 @@ export default {
         },
         {
             files  : ['*.vue', '**/*.vue'],
-            extends: ['stylelint-config-standard-vue', 'stylelint-config-recommended-vue', 'stylelint-config-recommended-vue/scss'],
+            extends: 'stylelint-config-standard-vue',
             plugins: ['@stylistic/stylelint-plugin'],
             rules  : {
                 '@stylistic/at-rule-name-space-after'        : 'always',
