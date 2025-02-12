@@ -55,6 +55,7 @@ export default [
                     ImportDeclaration  : 'first',
                 },
             ],
+            '@stylistic/indent-binary-ops'     : ['error', 4],
             '@stylistic/key-spacing'           : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
             '@stylistic/member-delimiter-style': ['error', {
                 multiline         : { delimiter: 'semi', requireLast: true },
