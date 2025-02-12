@@ -20,13 +20,13 @@
 </script>
 
 <template>
-    <Suspense>
-        <template #default>
+    <div class="contents">
+        <Suspense>
             <AsyncData />
-        </template>
 
-        <template #fallback>
-            <LoadingBox />
-        </template>
-    </Suspense>
+            <template #fallback>
+                <LoadingBox />
+            </template>
+        </Suspense>
+    </div>
 </template>

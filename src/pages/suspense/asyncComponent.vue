@@ -27,9 +27,7 @@
     <div>
         <LoadingBox />
         <Suspense>
-            <template #default>
-                <AsyncData />
-            </template>
+            <AsyncData />
 
             <template #fallback>
                 <LoadingBox />

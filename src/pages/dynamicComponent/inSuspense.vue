@@ -62,9 +62,7 @@
 <template>
     <section>
         <Suspense>
-            <template #default>
-                <mainComponent />
-            </template>
+            <mainComponent />
 
             <template #fallback>
                 <LoadingBox />
