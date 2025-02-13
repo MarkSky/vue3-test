@@ -5,9 +5,10 @@ export { };
 
 declare module 'vue-router' {
     interface RouteMeta {
-        title     : string; // 頁面標題
-        i18n      : string; // i18n key
-        transition: string; // 頁面轉場
-        authorize : boolean; // 是否需要驗證
+        title      : string; // 頁面標題
+        i18n       : string; // i18n key
+        authorize  : boolean; // 是否需要驗證
+        transition?: string; // 頁面轉場
+        layout?    : string; // 頁面佈局
     }
 }
