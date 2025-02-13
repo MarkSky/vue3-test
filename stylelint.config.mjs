@@ -41,7 +41,7 @@ export default {
         ],
         'comment-no-empty'                         : true,
         'custom-property-empty-line-before'        : 'never',
-        'custom-property-pattern'                  : 'v-.+',
+        'custom-property-pattern'                  : '^--.+',
         'declaration-block-no-duplicate-properties': [
             true,
             {
