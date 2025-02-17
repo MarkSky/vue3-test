@@ -12,6 +12,7 @@ import pluginVue from 'eslint-plugin-vue';
 import vueTsEslintConfig from '@vue/eslint-config-typescript';
 import vueParser from 'vue-eslint-parser';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
+import jsonEslint from '@eslint/json';
 import markdown from '@eslint/markdown';
 import pluginVitest from '@vitest/eslint-plugin';
 import pluginPlaywright from 'eslint-plugin-playwright';
@@ -23,13 +24,26 @@ import oxlint from 'eslint-plugin-oxlint';
 export default [
     {
         name   : 'app/files-to-ignore',
-        ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/node_modules/**', 'package.json'],
+        ignores: [
+            'logs',
+            '*.log',
+            'npm-debug.log*',
+            'pnpm-debug.log*',
+            '**/dist/**',
+            '**/dist-ssr/**',
+            '**/coverage/**',
+            '**/node_modules/**',
+            '*.sln',
+            '*.tsbuildinfo',
+            'playwright-report/**',
+        ],
     },
     css,
     eslint.configs.recommended,
     stylistic.configs['recommended-flat'],
     {
         name   : 'app/all-files-to-lint',
+        ignores: ['*.json', '**/*.json', 'package.json'],
         plugins: {
             '@stylistic': stylistic,
         },
@@ -38,23 +52,12 @@ export default [
             // "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
             // Suggestions
             // 'no-console': process.env.NODE_ENV === 'production' ? ['error', { allow: ['info', 'warn', 'error'] }] : 'off',
-            'prefer-arrow-callback'       : 'error',
-            '@master/css/class-order'     : 'warn',
-            '@master/css/class-validation': 'error',
-            '@master/css/class-collision' : 'warn',
-            '@stylistic/brace-style'      : ['error', '1tbs', { allowSingleLine: true }],
-            '@stylistic/indent'           : [
-                'error',
-                4,
-                {
-                    SwitchCase         : 1,
-                    FunctionDeclaration: { parameters: 'first' },
-                    CallExpression     : { arguments: 'first' },
-                    ArrayExpression    : 'first',
-                    ObjectExpression   : 'first',
-                    ImportDeclaration  : 'first',
-                },
-            ],
+            'prefer-arrow-callback'            : 'error',
+            '@master/css/class-order'          : 'warn',
+            '@master/css/class-validation'     : 'error',
+            '@master/css/class-collision'      : 'warn',
+            '@stylistic/brace-style'           : ['error', '1tbs', { allowSingleLine: true }],
+            '@stylistic/indent'                : 'off',
             '@stylistic/indent-binary-ops'     : ['error', 4],
             '@stylistic/key-spacing'           : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
             '@stylistic/member-delimiter-style': ['error', {
@@ -118,7 +121,7 @@ export default [
     },
     {
         name   : 'app/markdown-files-to-lint',
-        files  : ['**/*.md'],
+        files  : ['*.md', '**/*.md'],
         plugins: {
             markdown,
         },
@@ -129,8 +132,48 @@ export default [
         },
     },
     {
+        name   : 'app/json-files-to-lint',
+        files  : ['*.json', '**/*.json'],
+        ignores: ['package-lock.json'],
+        plugins: {
+            '@stylistic': stylistic,
+            'json'      : jsonEslint,
+        },
+        language: 'json/json',
+        ...jsonEslint.configs.recommended,
+        rules   : {
+            '@stylistic/indent': 'off',
+        },
+    },
+    {
+        name   : 'app/jsonc-files-to-lint',
+        files  : ['*.jsonc', '**/*.jsonc'],
+        plugins: {
+            '@stylistic': stylistic,
+            'json'      : jsonEslint,
+        },
+        language: 'json/jsonc',
+        ...jsonEslint.configs.recommended,
+        rules   : {
+            '@stylistic/indent': 'off',
+        },
+    },
+    {
+        name   : 'app/json5-files-to-lint',
+        files  : ['*.json5', '**/*.jsonc'],
+        plugins: {
+            '@stylistic': stylistic,
+            'json'      : jsonEslint,
+        },
+        language: 'json/json5',
+        ...jsonEslint.configs.recommended,
+        rules   : {
+            '@stylistic/indent': 'off',
+        },
+    },
+    {
         name   : 'app/js-files-to-lint',
-        files  : ['*.js', '**/*.js', '*.mjs', '**/*.mjs'],
+        files  : ['*.js', '**/*.js', '*.cjs', '**/*.cjs', '*.mjs', '**/*.mjs'],
         plugins: {
             '@stylistic': stylistic,
         },
