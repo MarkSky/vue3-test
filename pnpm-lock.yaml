@@ -39,6 +39,9 @@ importers:
       '@eslint/js':
         specifier: ^9.20.0
         version: 9.20.0
+      '@eslint/json':
+        specifier: ^0.10.0
+        version: 0.10.0
       '@eslint/markdown':
         specifier: ^6.2.2
         version: 6.2.2
@@ -555,6 +558,10 @@ packages:
     resolution: {integrity: sha512-iZA07H9io9Wn836aVTytRaNqh00Sad+EamwOVJT12GTLw1VGMFV/4JaME+JjLtr9fiGaoWgYnS54wrfWsSs4oQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@eslint/json@0.10.0':
+    resolution: {integrity: sha512-aW0181XofoAwuB0sI263bhwnvAlb6OGnGGxHjTZQNLFErfsAXCnwRD+Uxx6/pK73XtKuQ2w1wbhiTJ2BC/erAQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
   '@eslint/markdown@6.2.2':
     resolution: {integrity: sha512-U0/KgzI9BVUuHDQ9M2fuVgB0QZ1fSyzwm8jKmHr1dlsLHGHYzoeIA9yqLMdTbV3ivZfp6rTdt6zqre3TfNExUQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -594,6 +601,10 @@ packages:
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
+
+  '@humanwhocodes/momoa@3.3.6':
+    resolution: {integrity: sha512-7/sAGm3YsT6xG1bDkTSHvOpQB+cR4I2InfMVw110nuOCrxZvOQHgRqBMxSoTeUQrk9RS4OU9Aw2MBMZVJgLZMg==}
+    engines: {node: '>=18'}
 
   '@humanwhocodes/retry@0.3.1':
     resolution: {integrity: sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==}
@@ -3495,6 +3506,13 @@ snapshots:
 
   '@eslint/js@9.20.0': {}
 
+  '@eslint/json@0.10.0':
+    dependencies:
+      '@eslint/core': 0.10.0
+      '@eslint/plugin-kit': 0.2.5
+      '@humanwhocodes/momoa': 3.3.6
+      natural-compare: 1.4.0
+
   '@eslint/markdown@6.2.2':
     dependencies:
       '@eslint/core': 0.10.0
@@ -3536,6 +3554,8 @@ snapshots:
       '@humanwhocodes/retry': 0.3.1
 
   '@humanwhocodes/module-importer@1.0.1': {}
+
+  '@humanwhocodes/momoa@3.3.6': {}
 
   '@humanwhocodes/retry@0.3.1': {}
 
