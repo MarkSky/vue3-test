@@ -43,6 +43,7 @@
         "@master/css.vue": "2.0.0-rc.48",
         "@master/normal.css": "^3.1.0",
         "axios": "^1.7.9",
+        "phaser": "^3.88.2",
         "pinia": "^3.0.1",
         "vue": "^3.5.13",
         "vue-i18n": "^11.1.1",
