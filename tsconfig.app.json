@@ -21,8 +21,8 @@
         "types": [
             "unplugin-vue-router/client"
         ],
-        "module": "ESNext", // 設定 TypeScript 在編譯時，對 JavaScript 模組 (import/export) 的處理方式
-        "moduleResolution": "Bundler", // TypeScript 5.0 引入的一個新的 模組解析策略，它主要針對 前端打包工具（如 Vite、Webpack、Rollup、ESBuild） 進行最佳化
-        "target": "ESNext" // 確保生成的 JavaScript 是 現代 ESM 格式
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "target": "ESNext"
     }
 }

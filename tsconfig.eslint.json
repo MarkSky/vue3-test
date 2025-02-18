@@ -1,9 +1,14 @@
 {
     "extends": "./tsconfig.app.json",
     "include": [
+        "*.ts",
+        "*.cts",
+        "*.mts",
         "src",
         "src/**/*",
         "src/**/*.ts",
+        "src/**/*.cts",
+        "src/**/*.mts",
         "src/**/*.vue"
     ]
 }
