@@ -16,17 +16,17 @@
 
 <template>
     <main id="main">
-        <header>
+        <header class="flex@md jc:center line-height:1.5 max-h:100vh place-items:center pr:calc(var(--section-gap)/2) w:full@md">
             <img alt="Vue logo"
-                 class="logo"
+                 class="logo block m:0|auto|2rem m:0|2rem|0|0@md"
                  src="@/assets/logo.svg"
                  width="125"
                  height="125" />
 
-            <div class="wrapper">
+            <div class="wrapper flex@md flex:wrap@md place-items:flex-start@md pt:2">
                 <HelloWorld msg="You did it!" />
 
-                <nav>
+                <nav class="f:1rem@md ml:-1rem@md mt:1rem@md p:1rem|0@md text:left@md">
                     <RouterLink :to="{ name: 'Home' }"
                                 class="fg:#ffffff:hover">
                         {{ t('page.home.title') }}
@@ -46,6 +46,11 @@
                                 class="fg:#ffffff:hover">
                         {{ t('page.dynamicComponent.title') }}
                     </RouterLink>
+
+                    <RouterLink :to="{ name: 'Game' }"
+                                class="fg:#ffffff:hover">
+                        {{ t('page.game.title') }}
+                    </RouterLink>
                 </nav>
             </div>
         </header>
@@ -55,16 +60,6 @@
 </template>
 
 <style scoped>
-    header {
-        line-height: 1.5;
-        max-height: 100vh;
-    }
-
-    .logo {
-        display: block;
-        margin: 0 auto 2rem;
-    }
-
     nav {
         font-size: 12px;
         text-align: center;
@@ -84,31 +79,5 @@
 
     nav a:first-of-type {
         border: 0;
-    }
-
-    @media (width >=1024px) {
-        header {
-            display: flex;
-            place-items: center;
-            padding-right: calc(var(--section-gap) / 2);
-        }
-
-        .logo {
-            margin: 0 2rem 0 0;
-        }
-
-        header .wrapper {
-            display: flex;
-            place-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        nav {
-            font-size: 1rem;
-            text-align: left;
-            margin-top: 1rem;
-            margin-left: -1rem;
-            padding: 1rem 0;
-        }
     }
 </style>

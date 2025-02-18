@@ -28,6 +28,12 @@
             "column": {
                 "info": "找不到頁面！"
             }
+        },
+        "game": {
+            "title": "遊戲",
+            "phaserGame": {
+                "title": "Phaser 遊戲"
+            }
         }
     },
     "common": {

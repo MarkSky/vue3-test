@@ -24,6 +24,8 @@ declare module 'vue-router/auto-routes' {
     'DynamicComponent': RouteRecordInfo<'DynamicComponent', '/dynamicComponent', Record<never, never>, Record<never, never>>,
     'DefaultDynamicComponent': RouteRecordInfo<'DefaultDynamicComponent', '/dynamicComponent/defaultDynamicComponent', Record<never, never>, Record<never, never>>,
     'InSuspense': RouteRecordInfo<'InSuspense', '/dynamicComponent/inSuspense', Record<never, never>, Record<never, never>>,
+    'Game': RouteRecordInfo<'Game', '/game', Record<never, never>, Record<never, never>>,
+    'PhaserGame': RouteRecordInfo<'PhaserGame', '/game/phaserGame', Record<never, never>, Record<never, never>>,
     'Suspense': RouteRecordInfo<'Suspense', '/suspense', Record<never, never>, Record<never, never>>,
     'SuspenseAsyncComponent': RouteRecordInfo<'SuspenseAsyncComponent', '/suspense/asyncComponent', Record<never, never>, Record<never, never>>,
     'SuspenseAsyncData': RouteRecordInfo<'SuspenseAsyncData', '/suspense/asyncData', Record<never, never>, Record<never, never>>,

@@ -28,6 +28,12 @@
             "column": {
                 "info": "Page not found!"
             }
+        },
+        "game": {
+            "title": "game",
+            "phaserGame": {
+                "title": "Phaser Games"
+            }
         }
     },
     "common": {
