@@ -3,9 +3,9 @@ import { acceptHMRUpdate, defineStore } from 'pinia';
 
 export const useMainStore = defineStore('mainStore', {
     state: () => ({
-        appTemplateType : 'default',
-        apiUrl          : __API_URL__,
-        windowInnerWidth: window.innerWidth,
+        appTemplateType: 'default',
+        apiUrl         : __API_URL__,
+        windowWidth    : 0,
     }),
 
     getters: {},

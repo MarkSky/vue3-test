@@ -8,7 +8,7 @@ import { Game as MainGame } from '@/games/game';
 const mainStore = useMainStore();
 
 const calculateGameSize = (): { width: number; height: number } => {
-    const width = mainStore.windowInnerWidth;
+    const width = mainStore.windowWidth;
     const height = Math.floor(width * (3 / 4)); // 保持 3:4 比例
 
     return { width, height };
