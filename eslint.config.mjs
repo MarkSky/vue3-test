@@ -16,7 +16,7 @@ import jsonEslint from '@eslint/json';
 import markdown from '@eslint/markdown';
 import pluginVitest from '@vitest/eslint-plugin';
 import pluginPlaywright from 'eslint-plugin-playwright';
-import oxlint from 'eslint-plugin-oxlint';
+// import oxlint from 'eslint-plugin-oxlint';
 // import { FlatCompat } from "@eslint/eslintrc";
 
 // const compat = new FlatCompat();
@@ -474,6 +474,6 @@ export default [
         ...pluginPlaywright.configs['flat/recommended'],
         files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
     },
-    oxlint.configs['flat/recommended'],
+    // oxlint.configs['flat/recommended'],
 
 ];
