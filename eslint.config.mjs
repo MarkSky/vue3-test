@@ -40,7 +40,7 @@ export default [
     },
     css,
     eslint.configs.recommended,
-    stylistic.configs['recommended-flat'],
+    stylistic.configs.recommended,
     {
         name   : 'app/all-files-to-lint',
         ignores: ['*.json', '**/*.json', 'package.json'],
@@ -142,7 +142,8 @@ export default [
         language: 'json/json',
         ...jsonEslint.configs.recommended,
         rules   : {
-            '@stylistic/indent': 'off',
+            'no-irregular-whitespace': 'off',
+            '@stylistic/indent'      : 'off',
         },
     },
     {
@@ -160,7 +161,7 @@ export default [
     },
     {
         name   : 'app/json5-files-to-lint',
-        files  : ['*.json5', '**/*.jsonc'],
+        files  : ['*.json5', '**/*.json5'],
         plugins: {
             '@stylistic': stylistic,
             'json'      : jsonEslint,
@@ -241,6 +242,49 @@ export default [
     },
     {
         ...config,
+        name   : 'app/vue-script-files-to-lint',
+        files  : ['src/directives/*.ts', 'src/directives/**/*.ts', 'src/stores/*.ts', 'src/stores/**/*.ts'],
+        plugins: {
+            '@intlify/vue-i18n': vueI18n,
+            '@stylistic'       : stylistic,
+        },
+        settings: {
+            'vue-i18n': {
+                localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
+                messageSyntaxVersion: '^10.0.5',
+            },
+            'import/core-modules': ['vue-router/auto-routes'],
+        },
+        rules: {
+            '@intlify/vue-i18n/no-raw-text'     : ['error', { ignorePattern: '^[-~#:()&/]+$' }],
+            '@stylistic/arrow-spacing'          : 'error',
+            '@stylistic/comma-spacing'          : ['error', { before: false, after: true }],
+            '@stylistic/key-spacing'            : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
+            '@stylistic/keyword-spacing'        : ['error', { before: true, after: true }],
+            '@stylistic/multiline-ternary'      : ['error', 'always-multiline'],
+            '@stylistic/no-multi-spaces'        : 'off',
+            '@stylistic/object-curly-spacing'   : ['error', 'always'],
+            '@stylistic/quotes'                 : ['error', 'single'],
+            '@stylistic/space-before-blocks'    : 'error',
+            '@stylistic/space-infix-ops'        : ['error', { int32Hint: false }],
+            '@stylistic/space-unary-ops'        : 'error',
+            '@stylistic/switch-colon-spacing'   : ['error', { after: true, before: false }],
+            '@stylistic/type-annotation-spacing': 'off',
+            '@stylistic/type-generic-spacing'   : 'error',
+            '@typescript-eslint/unbound-method' : 'off',
+        },
+        languageOptions: {
+            parser       : vueParser,
+            parserOptions: {
+                parser     : tsParser,
+                project    : './tsconfig.eslint.json',
+                ecmaVersion: 2020,
+                sourceType : 'module',
+            },
+        },
+    },
+    {
+        ...config,
         name   : 'app/declare-files-to-lint',
         files  : ['*.d.ts', '**/*.d.ts'],
         plugins: {
@@ -315,6 +359,9 @@ export default [
                 tsconfigRootDir: import.meta.dirname,
             },
         },
+    },
+    {
+
     })),
     ...tsEslint.configs.strict,
     ...tsEslint.configs.stylistic,
@@ -351,48 +398,6 @@ export default [
         },
     },
     ...pluginVue.configs['flat/essential', 'flat/recommended'].map(config => (
-        {
-            ...config,
-            name   : 'app/vue-script-files-to-lint',
-            files  : ['src/directives/*.ts', 'src/directives/**/*.ts', 'src/stores/*.ts', 'src/stores/**/*.ts'],
-            plugins: {
-                '@intlify/vue-i18n': vueI18n,
-                '@stylistic'       : stylistic,
-            },
-            settings: {
-                'vue-i18n': {
-                    localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                    messageSyntaxVersion: '^10.0.5',
-                },
-                'import/core-modules': ['vue-router/auto-routes'],
-            },
-            rules: {
-                '@intlify/vue-i18n/no-raw-text'     : ['error', { ignorePattern: '^[-~#:()&/]+$' }],
-                '@stylistic/arrow-spacing'          : 'error',
-                '@stylistic/comma-spacing'          : ['error', { before: false, after: true }],
-                '@stylistic/key-spacing'            : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
-                '@stylistic/keyword-spacing'        : ['error', { before: true, after: true }],
-                '@stylistic/multiline-ternary'      : ['error', 'always-multiline'],
-                '@stylistic/object-curly-spacing'   : ['error', 'always'],
-                '@stylistic/quotes'                 : ['error', 'single'],
-                '@stylistic/space-before-blocks'    : 'error',
-                '@stylistic/space-infix-ops'        : ['error', { int32Hint: false }],
-                '@stylistic/space-unary-ops'        : 'error',
-                '@stylistic/switch-colon-spacing'   : ['error', { after: true, before: false }],
-                '@stylistic/type-annotation-spacing': 'off',
-                '@stylistic/type-generic-spacing'   : 'error',
-                '@typescript-eslint/unbound-method' : 'off',
-            },
-            languageOptions: {
-                parser       : vueParser,
-                parserOptions: {
-                    parser     : tsParser,
-                    project    : './tsconfig.eslint.json',
-                    ecmaVersion: 2020,
-                    sourceType : 'module',
-                },
-            },
-        },
         {
             ...config,
             name   : 'app/component-files-to-lint',
