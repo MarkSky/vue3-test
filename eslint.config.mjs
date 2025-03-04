@@ -285,44 +285,6 @@ export default [
     },
     {
         ...config,
-        name   : 'app/declare-files-to-lint',
-        files  : ['*.d.ts', '**/*.d.ts'],
-        plugins: {
-            '@stylistic': stylistic,
-        },
-        rules: {
-            '@stylistic/arrow-spacing'                : 'error',
-            '@stylistic/comma-spacing'                : ['error', { before: false, after: true }],
-            '@stylistic/key-spacing'                  : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
-            '@stylistic/keyword-spacing'              : ['error', { before: true, after: true }],
-            '@stylistic/multiline-ternary'            : ['error', 'always-multiline'],
-            '@stylistic/no-multi-spaces'              : 'off',
-            '@stylistic/object-curly-spacing'         : ['error', 'always'],
-            '@stylistic/quotes'                       : ['error', 'single'],
-            '@stylistic/space-before-blocks'          : 'error',
-            '@stylistic/space-in-parens'              : ['error', 'never'],
-            '@stylistic/space-infix-ops'              : ['error', { int32Hint: false }],
-            '@stylistic/space-unary-ops'              : 'error',
-            '@stylistic/switch-colon-spacing'         : ['error', { after: true, before: false }],
-            '@stylistic/type-annotation-spacing'      : 'off',
-            '@stylistic/type-generic-spacing'         : 'error',
-            '@typescript-eslint/array-type'           : ['error', { default: 'generic' }],
-            '@typescript-eslint/no-explicit-any'      : ['warn', { ignoreRestArgs: true }],
-            '@typescript-eslint/no-empty-function'    : ['error', { allow: [] }],
-            '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }],
-        },
-        languageOptions: {
-            parserOptions: {
-                projectService: {
-                    allowDefaultProject: ['./*.ts'],
-                    defaultProject     : './tsconfig.eslint.json',
-                },
-                tsconfigRootDir: import.meta.dirname,
-            },
-        },
-    },
-    {
-        ...config,
         name   : 'app/game-files-to-lint',
         files  : ['src/games/*.ts', 'src/games/**/*.ts', 'src/games/*.cts', 'src/games/**/*.cts', 'src/games/*.mts', 'src/games/**/*.mts'],
         plugins: {
@@ -361,7 +323,42 @@ export default [
         },
     },
     {
-
+        ...config,
+        name   : 'app/declare-files-to-lint',
+        files  : ['*.d.ts', '**/*.d.ts', 'router.d.ts'],
+        plugins: {
+            '@stylistic': stylistic,
+        },
+        rules: {
+            '@stylistic/arrow-spacing'                : 'error',
+            '@stylistic/comma-spacing'                : ['error', { before: false, after: true }],
+            '@stylistic/key-spacing'                  : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
+            '@stylistic/keyword-spacing'              : ['error', { before: true, after: true }],
+            '@stylistic/multiline-ternary'            : ['error', 'always-multiline'],
+            '@stylistic/no-multi-spaces'              : 'off',
+            '@stylistic/object-curly-spacing'         : ['error', 'always'],
+            '@stylistic/quotes'                       : ['error', 'single'],
+            '@stylistic/space-before-blocks'          : 'error',
+            '@stylistic/space-in-parens'              : ['error', 'never'],
+            '@stylistic/space-infix-ops'              : ['error', { int32Hint: false }],
+            '@stylistic/space-unary-ops'              : 'error',
+            '@stylistic/switch-colon-spacing'         : ['error', { after: true, before: false }],
+            '@stylistic/type-annotation-spacing'      : 'off',
+            '@stylistic/type-generic-spacing'         : 'error',
+            '@typescript-eslint/array-type'           : ['error', { default: 'generic' }],
+            '@typescript-eslint/no-explicit-any'      : ['warn', { ignoreRestArgs: true }],
+            '@typescript-eslint/no-empty-function'    : ['error', { allow: [] }],
+            '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }],
+        },
+        languageOptions: {
+            parserOptions: {
+                projectService: {
+                    allowDefaultProject: ['./*.ts'],
+                    defaultProject     : './tsconfig.eslint.json',
+                },
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
     })),
     ...tsEslint.configs.strict,
     ...tsEslint.configs.stylistic,
