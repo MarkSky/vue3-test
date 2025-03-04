@@ -4,6 +4,8 @@
         "*.ts",
         "*.cts",
         "*.mts",
+        "*.d.ts",
+        "router.d.ts",
         "src",
         "src/**/*",
         "src/**/*.ts",
