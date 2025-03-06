@@ -405,7 +405,7 @@ export default [
             settings: {
                 'vue-i18n': {
                     localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                    messageSyntaxVersion: '^10.0.5',
+                    messageSyntaxVersion: '^11.1.1',
                 },
                 'import/core-modules': ['vue-router/auto-routes'],
             },
