@@ -123,11 +123,14 @@ export default [
         name   : 'app/markdown-files-to-lint',
         files  : ['*.md', '**/*.md'],
         plugins: {
+            '@stylistic': stylistic,
             markdown,
         },
         language: 'markdown/commonmark',
         rules   : {
+            '@stylistic/indent'             : 'off',
             'markdown/no-html'              : 'error',
+            'no-irregular-whitespace'       : 'off',
             'vue/multi-word-component-names': 'off',
         },
     },
