@@ -74,7 +74,7 @@
         "@vue/tsconfig": "^0.7.0",
         "eslint": "^9.22.0",
         "eslint-plugin-html": "^8.1.2",
-        "eslint-plugin-oxlint": "^0.15.14",
+        "eslint-plugin-oxlint": "^0.15.15",
         "eslint-plugin-playwright": "^2.2.0",
         "eslint-plugin-vue": "^10.0.0",
         "globals": "^16.0.0",
