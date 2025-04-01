@@ -328,7 +328,7 @@ export default [
         settings: {
             'vue-i18n': {
                 localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                messageSyntaxVersion: '^11.1.1',
+                messageSyntaxVersion: '^11.1.2',
             },
         },
         rules: {
@@ -407,7 +407,7 @@ export default [
             settings: {
                 'vue-i18n': {
                     localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                    messageSyntaxVersion: '^11.1.1',
+                    messageSyntaxVersion: '^11.1.2',
                 },
                 'import/core-modules': ['vue-router/auto-routes'],
             },
