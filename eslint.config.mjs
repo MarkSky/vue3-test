@@ -409,7 +409,6 @@ export default [
                     localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
                     messageSyntaxVersion: '^11.1.2',
                 },
-                'import/core-modules': ['vue-router/auto-routes'],
             },
             rules: {
                 '@intlify/vue-i18n/no-raw-text'              : ['error', { ignorePattern: '^[-~#:()&/]+$' }],
