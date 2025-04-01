@@ -15,28 +15,6 @@
         "lint:eslint": "eslint . --fix",
         "lint": "run-s lint:*"
     },
-    "pnpm": {
-        "onlyBuiltDependencies": [
-            "esbuild",
-            "protobufjs",
-            "sharp",
-            "vue-demi"
-        ],
-        "supportedArchitectures": {
-            "os": [
-                "window",
-                "win32",
-                "darwin",
-                "current"
-            ],
-            "cpu": [
-                "x64",
-                "arm64",
-                "arm",
-                "current"
-            ]
-        }
-    },
     "dependencies": {
         "@master/colors": "^2.1.0",
         "@master/css": "2.0.0-rc.61",
@@ -83,11 +61,15 @@
         "oxlint": "^0.16.3",
         "postcss": "^8.5.3",
         "postcss-html": "^1.8.0",
+        "sass": "^1.86.1",
+        "sass-embedded": "^1.86.1",
         "stylelint": "^16.17.0",
         "stylelint-config-html": "^1.1.0",
         "stylelint-config-standard": "^37.0.0",
+        "stylelint-config-standard-scss": "^14.0.0",
         "stylelint-config-standard-vue": "^1.0.0",
         "stylelint-order": "^6.0.4",
+        "stylelint-scss": "^6.11.1",
         "typescript": "~5.8.2",
         "typescript-eslint": "^8.28.0",
         "unplugin-vue-router": "^0.12.0",

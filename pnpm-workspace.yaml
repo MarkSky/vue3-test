@@ -1,0 +1,14 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+supportedArchitectures:
+    os:
+      - window
+      - win32
+      - darwin
+      - current
+    cpu:
+      - x64
+      - arm64
+      - arm
+      - current
