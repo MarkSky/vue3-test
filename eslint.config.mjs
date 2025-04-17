@@ -98,11 +98,16 @@ export default [
         files  : ['*.html', '**/*.html'],
         plugins: {
             '@html-eslint': htmlEslint,
+            '@stylistic'  : stylistic,
             html,
         },
         rules: {
             ...htmlEslint.configs['flat/recommended'].rules,
-            '@html-eslint/indent': 'error',
+            '@html-eslint/attrs-newline'         : 'off',
+            '@html-eslint/indent'                : 'off',
+            '@html-eslint/no-extra-spacing-attrs': ['error', { enforceBeforeSelfClose: true }],
+            '@html-eslint/require-closing-tags'  : ['error', { selfClosing: 'always' }],
+            '@stylistic/spaced-comment'          : 'off',
         },
         languageOptions: {
             parser       : htmlParser,
