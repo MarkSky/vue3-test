@@ -8,15 +8,16 @@ import html from 'eslint-plugin-html';
 import tsEslint from 'typescript-eslint';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import css from '@master/eslint-config-css';
+import masterCss from '@master/eslint-config-css';
 import pluginVue from 'eslint-plugin-vue';
+// import vueTsEslintConfig from '@vue/eslint-config-typescript';
 import vueParser from 'vue-eslint-parser';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
 import jsonEslint from '@eslint/json';
 import markdown from '@eslint/markdown';
+import css from '@eslint/css';
 import pluginVitest from '@vitest/eslint-plugin';
 import pluginPlaywright from 'eslint-plugin-playwright';
-// import vueTsEslintConfig from '@vue/eslint-config-typescript';
 // import oxlint from 'eslint-plugin-oxlint';
 // import { FlatCompat } from "@eslint/eslintrc";
 
@@ -26,20 +27,15 @@ export default [
     {
         name   : 'app/files-to-ignore',
         ignores: [
-            'logs',
-            '*.log',
-            'npm-debug.log*',
-            'pnpm-debug.log*',
             '**/dist/**',
             '**/dist-ssr/**',
             '**/coverage/**',
             '**/node_modules/**',
-            '*.sln',
-            '*.tsbuildinfo',
-            'playwright-report/**',
+            '**/.vscode/**',
+            '**/ios/**',
         ],
     },
-    css,
+    masterCss,
     stylistic.configs.recommended,
     {
         name   : 'app/all-files-to-lint',
@@ -47,11 +43,22 @@ export default [
             '@stylistic': stylistic,
         },
         rules: {
-            '@master/css/class-order'          : 'warn',
-            '@master/css/class-validation'     : 'error',
-            '@master/css/class-collision'      : 'warn',
-            '@stylistic/brace-style'           : ['error', '1tbs', { allowSingleLine: true }],
-            '@stylistic/indent'                : 'off',
+            '@master/css/class-order'     : 'warn',
+            '@master/css/class-validation': 'error',
+            '@master/css/class-collision' : 'warn',
+            '@stylistic/brace-style'      : ['error', '1tbs', { allowSingleLine: true }],
+            '@stylistic/indent'           : [
+                'error',
+                4,
+                {
+                    SwitchCase         : 1,
+                    FunctionDeclaration: { parameters: 'first' },
+                    CallExpression     : { arguments: 'first' },
+                    ArrayExpression    : 'first',
+                    ObjectExpression   : 'first',
+                    ImportDeclaration  : 'first',
+                },
+            ],
             '@stylistic/indent-binary-ops'     : ['error', 4],
             '@stylistic/key-spacing'           : ['error', { beforeColon: false, afterColon: true, align: 'colon' }],
             '@stylistic/member-delimiter-style': ['error', {
@@ -72,7 +79,7 @@ export default [
         languageOptions: {
             globals: {
                 ...globals.browser,
-                ...globals.es2021,
+                ...globals.es2015,
                 __statics   : 'readonly',
                 Capacitor   : 'readonly',
                 chrome      : 'readonly',
@@ -119,25 +126,17 @@ export default [
         },
     },
     {
-        name   : 'app/markdown-files-to-lint',
-        files  : ['*.md', '**/*.md'],
-        ignores: ['*.vue', '**/*.vue'],
-        plugins: {
-            '@stylistic': stylistic,
-            markdown,
-        },
-        language: 'markdown/commonmark',
-        rules   : {
-            '@stylistic/indent'      : 'off',
-            'markdown/no-html'       : 'error',
-            'no-irregular-whitespace': 'off',
-        },
+        ...css.configs.recommended,
+        name    : 'app/css-files-to-lint',
+        files   : ['**/*.css'],
+        plugins : { css },
+        language: 'css/css',
     },
     {
         ...jsonEslint.configs.recommended,
         name   : 'app/json-files-to-lint',
         files  : ['*.json', '**/*.json'],
-        ignores: ['package-lock.json'],
+        ignores: ['*.md', '**/*.md', 'package-lock.json'],
         plugins: {
             '@stylistic': stylistic,
             'json'      : jsonEslint,
@@ -175,6 +174,21 @@ export default [
         },
     },
     {
+        name   : 'app/markdown-files-to-lint',
+        files  : ['*.md', '**/*.md'],
+        ignores: ['*.vue', '**/*.vue'],
+        plugins: {
+            '@stylistic': stylistic,
+            markdown,
+        },
+        language: 'markdown/commonmark',
+        rules   : {
+            '@stylistic/indent'      : 'off',
+            'markdown/no-html'       : 'error',
+            'no-irregular-whitespace': 'off',
+        },
+    },
+    {
         ...eslint.configs.recommended,
         name   : 'app/javascript-files-to-lint',
         files  : ['*.{js,jsx,mjs,mjsx,cjs,cjsx}', '**/*.{js,jsx,mjs,mjsx,cjs,cjsx}'],
@@ -182,6 +196,7 @@ export default [
             '@stylistic': stylistic,
         },
         rules: {
+            ...eslint.configs.recommended.rules,
             // eslint:recommended
             // "no-debugger": process.env.NODE_ENV === 'production' ? 'error' : 'off',
             // Suggestions
@@ -223,6 +238,7 @@ export default [
             '@stylistic/comma-spacing'                : ['error', { before: false, after: true }],
             '@stylistic/keyword-spacing'              : ['error', { before: true, after: true }],
             '@stylistic/multiline-ternary'            : ['error', 'always-multiline'],
+            '@stylistic/no-multi-spaces'              : 'off',
             '@stylistic/object-curly-spacing'         : ['error', 'always'],
             '@stylistic/quotes'                       : ['error', 'single'],
             '@stylistic/space-before-blocks'          : 'error',
@@ -230,10 +246,10 @@ export default [
             '@stylistic/space-infix-ops'              : ['error', { int32Hint: false }],
             '@stylistic/space-unary-ops'              : 'error',
             '@stylistic/switch-colon-spacing'         : ['error', { after: true, before: false }],
-            // "@stylistic/type-annotation-spacing": ["error", { "before": false, "after": true }],
+            '@stylistic/type-annotation-spacing'      : 'off',
             '@stylistic/type-generic-spacing'         : 'error',
             // turns a rule on with no configuration (i.e. uses the default configuration)
-            '@typescript-eslint/array-type'           : ['error', { default: 'generic' }],
+            '@typescript-eslint/array-type'           : ['error', { default: 'array' }],
             // turns on a rule with configuration
             '@typescript-eslint/no-explicit-any'      : ['warn', { ignoreRestArgs: true }],
             '@typescript-eslint/no-empty-function'    : ['error', { allow: [] }],
@@ -301,10 +317,50 @@ export default [
         },
     },
     {
-
+        name   : 'app/directives-files-to-lint',
+        files  : ['src/directives/*.ts', 'src/directives/**/*.ts'],
+        plugins: {
+            '@intlify/vue-i18n' : vueI18n,
+            '@stylistic'        : stylistic,
+            '@typescript-eslint': tsEslintPlugin,
+        },
+        settings: {
+            'vue-i18n': {
+                localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
+                messageSyntaxVersion: '^11.1.2',
+            },
+        },
+        rules: {
+            ...tsEslint.configs.strictTypeChecked.rules,
+            ...tsEslint.configs.stylisticTypeChecked.rules,
+            '@stylistic/arrow-spacing'          : 'error',
+            '@stylistic/comma-spacing'          : ['error', { before: false, after: true }],
+            '@stylistic/keyword-spacing'        : ['error', { before: true, after: true }],
+            '@stylistic/multiline-ternary'      : ['error', 'always-multiline'],
+            '@stylistic/no-multi-spaces'        : 'off',
+            '@stylistic/object-curly-spacing'   : ['error', 'always'],
+            '@stylistic/quotes'                 : ['error', 'single'],
+            '@stylistic/space-before-blocks'    : 'error',
+            '@stylistic/space-infix-ops'        : ['error', { int32Hint: false }],
+            '@stylistic/space-unary-ops'        : 'error',
+            '@stylistic/switch-colon-spacing'   : ['error', { after: true, before: false }],
+            '@stylistic/type-annotation-spacing': 'off',
+            '@stylistic/type-generic-spacing'   : 'error',
+            '@typescript-eslint/array-type'     : ['error', { default: 'array' }],
+        },
+        languageOptions: {
+            parser       : vueParser,
+            parserOptions: {
+                parser     : tsParser,
+                project    : './tsconfig.eslint.json',
+                ecmaVersion: 2020,
+                sourceType : 'module',
+            },
+        },
+    },
+    {
         name   : 'app/component-files-to-lint',
         files  : ['*.vue', '**/*.vue'],
-        ignores: ['*.json', '**/*.json'],
         plugins: {
             '@intlify/vue-i18n': vueI18n,
             '@stylistic'       : stylistic,
@@ -387,5 +443,4 @@ export default [
         files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
     },
     // oxlint.configs['flat/recommended'],
-
 ];
