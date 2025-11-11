@@ -34,6 +34,9 @@
             "phaserGame": {
                 "title": "Phaser Games"
             }
+        },
+        "wheelGame": {
+            "title": "Phaser Roulette Game"
         }
     },
     "common": {
