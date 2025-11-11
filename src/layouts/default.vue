@@ -16,17 +16,17 @@
 
 <template>
     <main id="main">
-        <header class="flex@md jc:center line-height:1.5 max-h:100vh place-items:center pr:calc(var(--section-gap)/2) w:full@md">
+        <header class="place-items:center jc:center line-height:1.5 max-h:100vh pr:calc(var(--section-gap)/2) flex@md w:full@md">
             <img alt="Vue logo"
-                 class="logo block m:0|auto|2rem m:0|2rem|0|0@md"
+                 class="block m:0|auto|2rem m:0|2rem|0|0@md logo"
                  src="@/assets/logo.svg"
                  width="125"
                  height="125" />
 
-            <div class="wrapper flex@md flex:wrap@md place-items:flex-start@md pt:2">
+            <div class="pt:2 flex@md place-items:flex-start@md flex:wrap@md wrapper">
                 <HelloWorld msg="You did it!" />
 
-                <nav class="f:1rem@md ml:-1rem@md mt:1rem@md p:1rem|0@md text:left@md">
+                <nav class="p:1rem|0@md f:1rem@md ml:-1rem@md mt:1rem@md text:left@md">
                     <RouterLink :to="{ name: 'Home' }"
                                 class="fg:#ffffff:hover">
                         {{ t('page.home.title') }}
@@ -50,6 +50,11 @@
                     <RouterLink :to="{ name: 'Game' }"
                                 class="fg:#ffffff:hover">
                         {{ t('page.game.title') }}
+                    </RouterLink>
+
+                    <RouterLink :to="{ name: 'WheelGame' }"
+                                class="fg:#ffffff:hover">
+                        {{ t('page.wheelGame.title') }}
                     </RouterLink>
                 </nav>
             </div>
