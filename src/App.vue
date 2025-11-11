@@ -3,7 +3,8 @@
        import
     */
     // Composables
-    import { onMounted, type Component } from 'vue';
+    import { computed, onMounted, type Component } from 'vue';
+    import { useRoute } from 'vue-router';
     import CSSRuntimeProvider from '@master/css.vue';
     import { storeToRefs } from 'pinia';
     // Stores
@@ -11,25 +12,26 @@
     // Components
     import ErrorBoundary from '@/components/ErrorBoundary.vue';
     // Utils
-    import layoutMapping from './utils/layoutMapping';
+    import { getLayoutComponent } from '@/utils/layoutMapping';
     // Styles
     import masterCSSConfig from '../master.css';
+
+    /*
+        route
+    */
+    const route = useRoute();
 
     /*
         Stores
     */
     const { windowWidth } = storeToRefs(useMainStore());
 
+    // 當 route 改變時，自動取得 layout 組件
+    const layout = computed<Component>(() => getLayoutComponent(route.meta.layout));
+
     // function
     const getTransitionName = (transition: unknown): string => {
         return typeof transition === 'string' ? transition : 'default';
-    };
-
-    // function
-    const getLayoutName = (layout: unknown): Component => {
-        const layoutKey = typeof layout === 'string' ? layout : 'default';
-
-        return layoutMapping[layoutKey] || layoutMapping['default'];
     };
 
     /*
@@ -50,13 +52,13 @@
 <template>
     <ErrorBoundary>
         <CSSRuntimeProvider :config="masterCSSConfig">
-            <RouterView v-slot="{ Component, route }">
-                <component :is="getLayoutName(route.meta.layout)">
+            <component :is="layout">
+                <RouterView v-slot="{ Component, route }">
                     <Transition :name="getTransitionName(route.meta.transition)">
                         <component :is="Component" />
                     </Transition>
-                </component>
-            </RouterView>
+                </RouterView>
+            </component>
         </CSSRuntimeProvider>
     </ErrorBoundary>
 </template>
