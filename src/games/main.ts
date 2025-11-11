@@ -32,6 +32,6 @@ const startGame = (parent: string) => {
         ...config,
         parent,
     });
- };
+};
 
- export default startGame;
+export default startGame;

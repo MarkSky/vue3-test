@@ -17,7 +17,7 @@
     // Composables
     import { onMounted, onUnmounted, ref } from 'vue';
     import { useI18n } from 'vue-i18n';
-    import Phaser from 'phaser';
+    import type Phaser from 'phaser';
     // Utils
     import { gameEventBus } from '@/utils/gameEventBus';
     // Games
@@ -53,8 +53,8 @@
 </script>
 
 <template>
-    <div class="flex ai:center flex:col pt:20 w:full">
-        <h1 class="f:20 f:bold fg:#ffffff flex:0|0|auto jc:center mb:4 mx:auto">
+    <div class="flex flex-col pt:20 w:full item-center">
+        <h1 class="flex:0|0|auto mx:auto f:20 f:bold fg:#ffffff jc:center mb:4">
             {{ t('page.game.phaserGame.title') }}
         </h1>
 

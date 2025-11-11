@@ -16,7 +16,7 @@ export class Game extends Scene {
     private gameText!  : Phaser.GameObjects.Text;
     private button!    : Phaser.GameObjects.Graphics;
     private hitArea!   : Phaser.GameObjects.Rectangle;
-    private buttonText!: Phaser.GameObjects.Text;
+    private buttonText : Phaser.GameObjects.Text | null = null;
 
     constructor() {
         super('Game');
