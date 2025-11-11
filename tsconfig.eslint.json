@@ -1,16 +1,20 @@
 {
     "extends": "./tsconfig.app.json",
     "include": [
-        "*.ts",
-        "*.cts",
-        "*.mts",
+        "eslint.config.ts",
         "*.d.ts",
-        "router.d.ts",
-        "src",
-        "src/**/*",
+        "shared/models/**/*",
+        "src/models/**/*",
         "src/**/*.ts",
-        "src/**/*.cts",
-        "src/**/*.mts",
+        "src/**/*.tsx",
         "src/**/*.vue"
-    ]
+    ],
+    "exclude": [
+        ".vscode",
+        "node_modules"
+    ],
+    "compilerOptions": {
+        "noEmit": true,
+        "skipLibCheck": true
+    }
 }
