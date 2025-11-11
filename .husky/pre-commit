@@ -1,0 +1,58 @@
+# -------------------------------
+# 1️⃣ 判斷作業系統並初始化 Node
+# -------------------------------
+OS_TYPE="$(uname)"
+echo "Detected OS: $OS_TYPE"
+
+if [[ "$OS_TYPE" == MINGW* || "$OS_TYPE" == MSYS* || "$OS_TYPE" == CYGWIN* ]]; then
+  # Windows 使用 fnm
+  echo "🟢 Initializing Node with fnm (Windows)"
+  export PATH="$HOME/AppData/Local/fnm:$PATH"
+  if command -v fnm >/dev/null 2>&1; then
+    eval "$(fnm env)"
+  else
+    echo "❌ fnm not found. Please install fnm."
+    exit 1
+  fi
+else
+  # macOS / Linux 使用 nvm
+  echo "🟢 Initializing Node with nvm (macOS/Linux)"
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    # shellcheck disable=SC1090
+    . "$NVM_DIR/nvm.sh"
+  else
+    echo "❌ nvm not found. Please install nvm."
+    exit 1
+  fi
+fi
+
+# -------------------------------
+# 2️⃣ 判斷可用 package manager
+# -------------------------------
+if command -v pnpm >/dev/null 2>&1; then
+    PM="pnpm"
+elif command -v yarn >/dev/null 2>&1; then
+    PM="yarn"
+elif command -v npx >/dev/null 2>&1; then
+    PM="npx"
+else
+    echo "❌ 沒有找到 pnpm、yarn 或 npx，請先安裝 Node.js 與其中一個 package manager。"
+    exit 1
+fi
+
+echo "🛠 Using $PM to run lint-staged"
+
+# -------------------------------
+# 3️⃣ 執行 lint-staged
+# -------------------------------
+case "$PM" in
+    pnpm)
+        pnpm exec lint-staged --config .lintstagedrc
+        ;;
+    yarn)
+        yarn exec lint-staged --config .lintstagedrc
+        ;;
+    npx)
+        npx lint-staged --config .lintstagedrc
+        ;;
+esac
