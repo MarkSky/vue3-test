@@ -37,12 +37,19 @@
         },
         "wheelGame": {
             "title": "Phaser Roulette Game"
+        },
+        "wheelGame2": {
+            "title": "Phaser Roulette Game 2"
         }
     },
     "common": {
         "column": {
             "loading": "Loading...",
             "noData": "No information"
+        },
+        "btn": {
+            "stop": "stop",
+            "start": "start"
         }
     }
 }

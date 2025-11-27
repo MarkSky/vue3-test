@@ -37,12 +37,19 @@
         },
         "wheelGame": {
             "title": "Phaser 輪盤遊戲"
+        },
+        "wheelGame2": {
+            "title": "Phaser 輪盤遊戲2"
         }
     },
     "common": {
         "column": {
             "loading": "載入中...",
             "noData": "沒有資料"
+        },
+        "btn": {
+            "stop": "停止",
+            "start": "開始"
         }
     }
 }
