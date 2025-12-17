@@ -40,6 +40,9 @@
         },
         "wheelGame2": {
             "title": "Phaser Roulette Game 2"
+        },
+        "wheelGame3": {
+            "title": "Phaser Roulette Game 3"
         }
     },
     "common": {
