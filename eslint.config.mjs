@@ -335,7 +335,7 @@ export default [
         settings: {
             'vue-i18n': {
                 localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                messageSyntaxVersion: '^11.2.7',
+                messageSyntaxVersion: '^11.2.8',
             },
         },
         rules: {
@@ -389,7 +389,7 @@ export default [
         settings: {
             'vue-i18n': {
                 localeDir           : 'src/locales/*.{json,json5,yaml,yml}',
-                messageSyntaxVersion: '^11.2.7',
+                messageSyntaxVersion: '^11.2.8',
             },
         },
         rules: {
