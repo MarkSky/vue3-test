@@ -66,6 +66,16 @@
                                 class="fg:#ffffff:hover">
                         {{ t('page.wheelGame3.title') }}
                     </RouterLink>
+
+                    <RouterLink :to="{ name: 'WheelGame4' }"
+                                class="fg:#ffffff:hover">
+                        {{ t('page.wheelGame4.title') }}
+                    </RouterLink>
+
+                    <RouterLink :to="{ name: 'WheelGame5' }"
+                                class="fg:#ffffff:hover">
+                        {{ t('page.wheelGame5.title') }}
+                    </RouterLink>
                 </nav>
             </div>
         </header>

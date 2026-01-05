@@ -13,6 +13,7 @@ export type OnSpinCompleteCallback = (prize: PrizeItem, index: number) => void;
 export default class WheelScene extends Phaser.Scene {
     private config!: WheelConfig;
 
+    private gameRoot!        : Phaser.GameObjects.Container;
     private wheel!           : Phaser.GameObjects.Container;
     private pointer!         : Phaser.GameObjects.Image;
     private spinning = false;
@@ -28,6 +29,8 @@ export default class WheelScene extends Phaser.Scene {
     // 音效
     private tickSound?: Phaser.Sound.BaseSound;
     private endSound? : Phaser.Sound.BaseSound;
+
+    private prizeOverlay?: Phaser.GameObjects.Container;
 
     private readonly wheelRadius = 220;
     private readonly centerX = 300;
@@ -70,12 +73,13 @@ export default class WheelScene extends Phaser.Scene {
             this.load.audio('endSound', sounds.end);
         }
 
-        const { backgroundImg01, backgroundImg02, pointer, inner } = this.config.images;
+        const { backgroundImg01, backgroundImg02, pointer, inner, treasure } = this.config.images;
 
         this.load.image('bg01', backgroundImg01);
         this.load.image('bg02', backgroundImg02);
         this.load.image('pointer', pointer);
         this.load.image('inner', inner);
+        this.load.image('treasure', treasure);
     }
 
     create() {
@@ -88,6 +92,8 @@ export default class WheelScene extends Phaser.Scene {
         if (this.cache.audio.exists('endSound')) {
             this.endSound = this.sound.add('endSound', { volume: 0.6 });
         }
+
+        this.gameRoot = this.add.container(0, 0);
 
         // 🎡 頁面載入時就顯示完整輪盤
         this.createBackground();
@@ -121,26 +127,26 @@ export default class WheelScene extends Phaser.Scene {
     }
 
     private highlightSector(index: number) {
-        // ✅ 先清掉舊的
         this.clearHighlight();
 
         const prizes = this.config.prizes;
         const count = prizes.length;
         const segmentAngle = 360 / count;
 
-        // ⭐ 關鍵：定義高亮區範圍
-        const outerRadius = this.wheelRadius * 0.68; // 不要到最外
-        const innerRadius = this.wheelRadius * 0.2; // 中間挖空
+        const outerRadius = this.wheelRadius * 0.68;
+        const innerRadius = this.wheelRadius * 0.2;
 
-        const startDeg = -90 + index * segmentAngle;
-        const endDeg = startDeg + segmentAngle;
+        // 🔧 讓扇區「中心」對齊 -90°（12 點鐘方向）
+        // 所以起始角度要往回退半個扇區
+        const startDeg = -90 - segmentAngle / 2;
+        const endDeg = -90 + segmentAngle / 2;
+
+        console.log('🎨 高亮扇區範圍:', startDeg.toFixed(2), '°', '~', endDeg.toFixed(2), '°');
 
         const g = this.add.graphics();
         g.fillStyle(0xffff99, 0.55);
-
         g.beginPath();
 
-        // 外弧（順時針）
         g.arc(
             0,
             0,
@@ -150,7 +156,6 @@ export default class WheelScene extends Phaser.Scene {
             false,
         );
 
-        // 內弧（逆時針，挖空）
         g.arc(
             0,
             0,
@@ -163,10 +168,12 @@ export default class WheelScene extends Phaser.Scene {
         g.closePath();
         g.fillPath();
 
-        this.wheel.add(g);
+        // 設定位置（跟 wheel 同一個位置）
+        g.setPosition(this.wheel.x, this.wheel.y);
+        this.add.existing(g);
+
         this.highlightGraphic = g;
 
-        // ✨ 呼吸閃爍
         this.tweens.add({
             targets : g,
             alpha   : { from: 0.25, to: 0.6 },
@@ -189,6 +196,76 @@ export default class WheelScene extends Phaser.Scene {
             duration: 50,
             yoyo    : true,
             ease    : 'Quad.easeOut',
+        });
+    }
+
+    private showPrizeOverlay(label: string) {
+        // 🔻 輪盤淡出
+        this.tweens.add({
+            targets   : this.gameRoot,
+            alpha     : 0,
+            duration  : 300,
+            ease      : 'Power2',
+            onComplete: () => {
+                this.gameRoot.setVisible(false);
+            },
+        });
+
+        const { centerX, centerY } = this.cameras.main;
+
+        const overlay = this.add.container(0, 0);
+
+        const mask = this.add.rectangle(
+            centerX,
+            centerY,
+            this.scale.width,
+            this.scale.height,
+            0x000000,
+            0.8,
+        );
+
+        const chest = this.add.image(
+            this.cameras.main.centerX,
+            this.cameras.main.centerY,
+            'treasure',
+        )
+            .setScale(0.6)
+            .setDepth(100);
+
+        const text = this.add.text(
+            this.cameras.main.centerX,
+            this.cameras.main.centerY - chest.displayHeight / 2 - 40,
+            `恭喜中獎\n${ label }`,
+            {
+                fontSize       : '36px',
+                color          : '#FFD54F',
+                fontStyle      : 'bold',
+                align          : 'center',
+                stroke         : '#000',
+                strokeThickness: 6,
+            },
+        )
+            .setOrigin(0.5)
+            .setDepth(100);
+
+        overlay.add([mask, chest, text]);
+        this.prizeOverlay = overlay;
+
+        this.tweens.add({
+            targets : chest,
+            alpha   : 1,
+            scale   : { from: 0.2, to: 0.4 },
+            duration: 600,
+            ease    : 'Back.easeOut',
+        });
+
+        this.tweens.add({
+            targets : text,
+            alpha   : 1,
+            y       : '-=10',
+            duration: 500,
+            delay   : 200,
+            ease    : 'Power2',
         });
     }
 
@@ -233,14 +310,28 @@ export default class WheelScene extends Phaser.Scene {
         }
 
         const segmentAngle = 360 / count;
+        // 🎯 12 點鐘方向
+        const POINTER_ANGLE = -90;
 
         // ✅ 計算停止角度（與原版 spinToPrize 相同邏輯）
-        const stopAngle = 360 - (targetIndex * segmentAngle + segmentAngle / 2);
+        // const stopAngle = 360 - (targetIndex * segmentAngle + segmentAngle / 2);
+
+        // 🎯 中獎扇形的中心角
+        const prizeCenterAngle = targetIndex * segmentAngle + segmentAngle / 2;
+
+        // 🎯 對齊 12 點鐘所需的基準停止角
+        const baseStopAngle = POINTER_ANGLE - prizeCenterAngle;
 
         // 多轉幾圈
         const rounds = Phaser.Math.Between(3, 5);
-        const randomOffset = Phaser.Math.Between(-5, 5);
-        const finalAngle = 360 * rounds + stopAngle + randomOffset;
+        // const randomOffset = Phaser.Math.Between(-5, 5);
+        // 🎲 自然模式才加隨機偏移
+        const randomOffset = this.config.alignMode === 'natural'
+            ? Phaser.Math.Between(-5, 5)
+            : 0;
+
+        // const finalAngle = 360 * rounds + stopAngle + randomOffset;
+        const finalAngle = 360 * rounds + baseStopAngle + randomOffset;
 
         const spinDuration = 4200;
         const endSoundDelay = spinDuration - 3600;
@@ -281,11 +372,16 @@ export default class WheelScene extends Phaser.Scene {
 
                 console.log(`🎉 停在：${ prize.label }`);
 
-                // ⭐ 中獎扇形呼吸發光
+                // ⭐ 1. 高亮中獎扇形
                 this.highlightSector(targetIndex);
 
-                // ✅ 通知 Vue 中獎結果
-                this.onSpinComplete?.(prize, targetIndex);
+                // ⏱️ 2. 停 1.2 秒後顯示中獎畫面
+                this.time.delayedCall(1200, () => {
+                    this.showPrizeOverlay(prize.label);
+
+                    // 📣 3. 再通知 Vue（此時畫面已出現）
+                    this.onSpinComplete?.(prize, targetIndex);
+                });
             },
         });
     }
@@ -296,6 +392,8 @@ export default class WheelScene extends Phaser.Scene {
 
         this.bg01 = this.add.image(cx, cy, 'bg01');
         this.bg02 = this.add.image(cx, cy, 'bg02');
+
+        this.gameRoot.add([this.bg01, this.bg02]);
 
         const targetSize = 500; // game width / height
         const texture = this.textures.get('bg01').getSourceImage() as HTMLImageElement;
@@ -326,6 +424,8 @@ export default class WheelScene extends Phaser.Scene {
 
         // this.wheel = this.add.container(this.centerX, this.centerY);
         this.wheel = this.add.container(cx, cy);
+
+        this.gameRoot.add(this.wheel);
 
         const radius = 250;
         const segmentAngle = 360 / count;
@@ -395,5 +495,7 @@ export default class WheelScene extends Phaser.Scene {
             .setOrigin(0.5, 0)   // 尖端在圖片「上方中央」
             .setScale(0.6)       // 視圖片大小調整
             .setDepth(20);       // 一定要比輪盤高
+
+        this.gameRoot.add(this.pointer);
     }
 }

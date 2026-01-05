@@ -3,7 +3,7 @@
         "name": "WheelGame3",
         "meta": {
             "title": "Phaser 輪盤遊戲3",
-            "i18n": "page.wheelGame2.title",
+            "i18n": "page.wheelGame3.title",
             "transition": "default",
             "authorize": false
         }
@@ -67,11 +67,13 @@
             backgroundImg01: `${ baseUrl.value }images/game/wheel/Backgrund1.png`,
             backgroundImg02: `${ baseUrl.value }images/game/wheel/Backgrund2.png`,
             pointer        : `${ baseUrl.value }images/game/wheel/pointer.png`,
+            treasure       : `${ baseUrl.value }images/game/wheel/treasure_chest.png`,
         },
         sounds: {
             tick: `${ baseUrl.value }audios/run.mp3`,
             end : `${ baseUrl.value }audios/stop.mp3`,
         },
+        alignMode: 'snap12',
     }));
 
     // function
@@ -95,12 +97,12 @@
     onMounted(() => {
         if (gameContainerRef.value) {
             const gameConfig: Phaser.Types.Core.GameConfig = {
-                type           : AUTO,
-                width          : 500,
-                height         : 500,
-                parent         : gameContainerRef.value,
-                backgroundColor: '#ffffff',
-                scene          : [new WheelScene(wheelConfig.value)],
+                type       : AUTO,
+                width      : 500,
+                height     : 500,
+                parent     : gameContainerRef.value,
+                transparent: true,
+                scene      : [new WheelScene(wheelConfig.value)],
             };
 
             gameInstance.value = new Phaser.Game(gameConfig);

@@ -43,6 +43,12 @@
         },
         "wheelGame3": {
             "title": "Phaser 輪盤遊戲3"
+        },
+        "wheelGame4": {
+            "title": "Phaser 輪盤遊戲4"
+        },
+        "wheelGame5": {
+            "title": "Phaser 輪盤遊戲5"
         }
     },
     "common": {
