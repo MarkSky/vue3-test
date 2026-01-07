@@ -14,8 +14,9 @@ export interface WheelImages {
 }
 
 export interface WheelSounds {
-    tick?: string;
-    end? : string;
+    tick?        : string;
+    end?         : string;
+    treasureOpen?: string;
 }
 
 export type AlignMode = 'natural' | 'snap12';
