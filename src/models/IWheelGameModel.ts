@@ -1,3 +1,9 @@
+export enum DrawState {
+    Idle = 'idle',
+    Spinning = 'spinning',
+    Result = 'result',
+}
+
 export interface WheelPrize {
     label: string;
     color: number;
