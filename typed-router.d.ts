@@ -114,6 +114,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    'WheelGame6': RouteRecordInfo<
+      'WheelGame6',
+      '/game/wheelGame6',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     'Suspense': RouteRecordInfo<
       'Suspense',
       '/suspense',
@@ -223,6 +230,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/game/wheelGame5.vue': {
       routes:
         | 'WheelGame5'
+      views:
+        | never
+    }
+    'src/pages/game/wheelGame6.vue': {
+      routes:
+        | 'WheelGame6'
       views:
         | never
     }
